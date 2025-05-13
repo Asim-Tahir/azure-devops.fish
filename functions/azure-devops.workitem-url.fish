@@ -113,5 +113,7 @@ function azure-devops.workitem-url -d "Get Azure DevOps Work Item URL"
         end
     end
 
-    echo "https://dev.azure.com/$_flag_organization/$_flag_project/_workitems/edit/$_flag_workitem"
+    set -g AZURE_DEVOPS_FISH_WORKITEM_URL "https://dev.azure.com/$_flag_organization/$_flag_project/_workitems/edit/$_flag_workitem"
+
+    echo "$AZURE_DEVOPS_FISH_WORKITEM_URL"
 end

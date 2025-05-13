@@ -127,6 +127,44 @@ azure-devops.pr-url \
     -R "https://My_Org@dev.azure.com/My_Org/My%20-%20Project/_git/My.Repo"
 ```
 
+### Get Azure DevOps Work Item URL
+
+The `azure-devops.workitem-url` function returns the direct URL to a specific Azure DevOps work item.
+
+#### Basic Usage
+
+```fish
+azure-devops.workitem-url -o "MyOrganization" -p "MyProject" -w 12345
+# Output: https://dev.azure.com/MyOrganization/MyProject/_workitems/edit/12345
+```
+
+#### Arguments
+
+- `-h`, `--help`           Show help message
+- `-o`, `--organization`   Azure DevOps organization name (required)
+- `-p`, `--project`        Azure DevOps project name (required)
+- `-w`, `--workitem`       Azure DevOps work item ID (required, positive integer)
+
+#### Example
+
+```fish
+azure-devops.workitem-url -o "MyOrganization" -p "MyProject" -w 12345
+```
+
+If you have set the following environment variables, you can omit the arguments:
+- `AZURE_DEVOPS_FISH_ORGANIZATION`
+- `AZURE_DEVOPS_FISH_PROJECT`
+- `AZURE_DEVOPS_FISH_WORKITEM`
+
+```fish
+set -x AZURE_DEVOPS_FISH_ORGANIZATION "MyOrganization"
+set -x AZURE_DEVOPS_FISH_PROJECT "MyProject"
+set -x AZURE_DEVOPS_FISH_WORKITEM 12345
+azure-devops.workitem-url
+```
+
+If any required argument is missing or invalid, the function will print an error and usage example.
+
 ### Environment Variables
 
 #### Input Enviroment Variables
@@ -136,9 +174,14 @@ azure-devops.pr-url \
 - `AZURE_DEVOPS_FISH_SOURCE_BRANCH`: Source branch
 - `AZURE_DEVOPS_FISH_TARGET_BRANCH`: Target branch
 
-#### Output Enviroment Variables
+- `AZURE_DEVOPS_FISH_ORGANIZATION`: Azure DevOps organization name
+- `AZURE_DEVOPS_FISH_PROJECT`: Azure DevOps project name
+- `AZURE_DEVOPS_FISH_WORKITEM`: Azure DevOps work item ID
+
+#### Output Environment Variables
 
 - `AZURE_DEVOPS_FISH_PULL_REQUEST_URL`: Azure DevOps Pull Request URL
+- `AZURE_DEVOPS_FISH_WORKITEM_URL`: Azure DevOps Work Item URL
 
 # Credit
 
